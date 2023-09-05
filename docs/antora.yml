@@ -1,0 +1,6 @@
+name: docs
+title: 文档标题
+version: ~
+display_version: 最新
+nav:
+  - modules/ROOT/nav.adoc

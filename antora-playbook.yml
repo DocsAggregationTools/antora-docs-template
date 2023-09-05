@@ -1,0 +1,58 @@
+site:
+  title: 文档站点标题
+  url: "/"
+  # 开始页
+  start_page: docs::index.adoc
+
+runtime:
+  cache_dir: ./.cache/antora
+  fetch: true
+  log:
+    level: info
+
+content:
+  sources:
+  # 本项目文档. 本项目需要初始化为 git 仓库，且有 commit 记录
+  # 本地当前项目
+#  - url: .
+#    branches: HEAD
+#    start_path: docs
+  - url: https://github.com/DocsAggregationTools/antora-docs-template.git
+    branches: main
+    start_path: docs
+
+
+asciidoc:
+  attributes:
+    # 文本画图渲染服务 kroki 地址, 可使用 service 下的 docker-compose 文件自部署
+    kroki-server-url: https://kroki.io
+    # tab 标签联动
+    tabs-sync-option: ''
+    # 前页（Prev）、后页（Next）
+    page-pagination: ''
+    # toc 名称
+    page-toctitle: '目录'
+    # 键盘、按钮、菜单
+    experimental: ''
+    commandkey: &#8984;
+  extensions:
+  - asciidoctor-kroki
+  - '@asciidoctor/tabs'
+
+antora:
+  extensions:
+  # 全文搜索
+  - require: '@antora/lunr-extension'
+    languages: [zh,en]
+
+ui:
+  # UI
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  # 自定义 UI 部分
+  supplemental_files: ./supplemental-ui
+
+# 站点生成后目录
+output:
+  dir: ./public

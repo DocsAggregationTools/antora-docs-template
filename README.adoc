@@ -1,0 +1,50 @@
+
+# antora docs template
+
+antora 快速建立文档站点模版
+
+* 示例文档
+* antora 必要依赖
+* 快速构建脚本
+
+## 目录结构
+
+[listing]
+----
+📂 antora-docs-template
+  📁 docs                      # 示例文档, antora 规定的目录结构
+    📁 modules                 # 模块
+      📁 ROOT                  # 默认根模块
+        📁 attachments         # 附件
+        📁 examples            # 示例
+        📁 images              # 图片
+        📁 pages               # 文章
+        📁 partials            # 组件
+        📄 nav.adoc            # 目录
+    📄 antora.yml              # 文档目录结构配置
+  📁 service                   # 依赖服务
+  📁 supplemental-ui           # antora 自定义 UI
+  📄 run.sh                    # 操作脚本
+  📄 antora-playbook.yaml      # antora 配置
+----
+
+
+## 操作
+
+[source,bash]
+....
+sh run.sh init     # 安装依赖
+sh run.sh gen      # 站点生成
+sh run.sh preview  # 预览
+....
+
+## 依赖服务
+
+使用 docker 进行安装
+
+[source,bash]
+....
+
+cd service/docker-compose
+docker-compose -f docker-compose-kroki.yml up -d
+....
